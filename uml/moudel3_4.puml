@@ -1,0 +1,45 @@
+@startuml
+skinparam defaultFontName Microsoft YaHei UI
+start
+
+    note
+    charge_button()
+    ====
+    * IO_API.c
+    end note
+
+    if(一键开启（锁）状态)then(true)
+        if(重置按钮状态)then(true)
+            stop
+        else(false)
+        endif
+        :一键开启（锁）状态计数;
+    else(false)
+        :重置按键状态置零;
+        :一键开启（锁）状态计数清零;
+        :关闭添加卡功能;
+    endif
+    if(一键开启（锁）状态计数等于3)then(true)
+        if(一键启停功能可用)then(true)
+            if(枪在使用)then(true)
+                :一键开启（锁）状态计数清零;
+            else(false)
+            endif
+            if(枪状态)then(未使用)
+            :更新枪充电模式为自动;
+            :发送开始充电到服务器;
+            :更新屏幕显示为充电中;
+            else(使用中)
+            :更新枪为停止充电状态;
+            endif
+        else(false)
+        endif
+    else(false)
+    endif
+    if(一键开启（锁）状态计数大于200)then(true)
+        :更新为可添加卡状态;
+    else(false)
+    endif
+stop
+@enduml
+

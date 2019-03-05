@@ -1,0 +1,36 @@
+@startuml
+skinparam defaultFontName Microsoft YaHei UI
+start
+
+    note
+    meter_pro()
+    ====
+    * modbus.c
+    end note
+    :读取电表数据;
+    if(枪在充电状态)then(true)
+        :电量计费;
+        :判断是否需要停止充电;
+            note
+            _auto_stop_charge()
+            end note
+    :间隔存入实时订单;
+    :更新屏幕信息;
+    elseif(接触器打开状态)then(true)
+    :增加逻辑状态错误计数;
+    elseif(充电电流大于50)then(true)
+    :增加逻辑状态错误计数;
+    endif
+    if(逻辑状态错误计数大于10)then(true)
+    :关闭充电;
+    :逻辑状态错误计数清零;
+    else(false)
+    endif
+    :数据记录个数递增;
+    if(数据记录个数超过最大枪个数)then(true)
+        :数据记录个数清零;
+    else(false)
+    endif
+stop
+@enduml
+

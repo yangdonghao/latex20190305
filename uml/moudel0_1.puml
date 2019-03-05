@@ -1,0 +1,23 @@
+@startuml
+skinparam defaultFontName Microsoft YaHei UI
+start
+    note
+    reboot_process()
+    ====
+    * main.c
+    end note
+    :获取实时订单数据地址;
+    floating note: get_realtime_bill_address()
+    :读出外部存储数据;
+    if(订单标志数据)then(错误)
+    else(正确)
+        if(上次关机是因为系统掉电)then(否)
+        else(是)
+        :复制实时订单数据到枪数据;
+        :将枪数据保存到外部存储离线账单中;
+        :清除外部存储的实时订单数据;
+        :将临时账单和枪结构体数据清零;
+        endif
+    endif 
+stop
+@enduml

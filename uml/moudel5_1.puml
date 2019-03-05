@@ -1,0 +1,35 @@
+@startuml
+skinparam defaultFontName Microsoft YaHei UI
+start
+    note
+    Receive_Bluetooth()
+    ====
+    * debug.c
+    end note
+    while(有新数据)is(true)
+        if(接收数据为正常数据)then(true)
+            if(接收完成)then(false)
+            else(true)
+                if(CRC校验)then(false)
+                else(true)
+                :数据处理句柄;
+                note
+                blue_handleProtocol()
+                end note
+                endif
+                :数据计数置零;
+            endif
+        elseif(接收数据为AT指令)then(true)
+            if(数据为断开连接标志)then(true)
+                :标记蓝牙状态;
+                :清空数据;
+            else(false)
+            endif
+        endif
+        if(接收到第三个数据)then(false)
+        else(true)
+            :接收字符判断;
+        endif     
+    endwhile(false)
+stop
+@enduml

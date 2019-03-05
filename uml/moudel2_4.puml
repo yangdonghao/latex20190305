@@ -1,0 +1,49 @@
+@startuml
+
+skinparam defaultFontName Microsoft YaHei UI
+
+start
+    note
+    server_wifi_RX()
+    ====
+    * WiFi.c
+    end note
+    while(有新数据)is(true)
+        if(接收数组位置超出范围)then(false)
+        else(true)
+        :数据计数置零;
+        endif
+        :接收数据写入数组;
+
+        if(步骤为1)then(false)
+        else(true)
+            if(桢尾)then(否)
+            else(是)
+                :数据类型设为服务器数据;
+                :接收数据发送到数据队列;
+                :标记步骤为2;
+            endif
+        endif
+
+        if(步骤为0且帧头正确)then(false)
+        else(true)
+            :步骤标记为1;
+            :协议头写入数组头部，数据位置设为1;
+        endif  
+        if(步骤为2)then(false)
+        else(true)
+            :数据计数置零;
+        endif 
+
+        if(步骤为0且接收数据为换行回车符)then(false)
+        else
+            if(网络类型为WIFI)then(true)
+            else(false)
+                :数据类型设为AT指令;
+                :接收数据发送到数据队列;
+            endif
+            :数据计数置零;
+        endif
+    endwhile(false)
+stop
+@enduml

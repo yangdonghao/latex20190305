@@ -1,0 +1,30 @@
+@startuml
+skinparam defaultFontName Microsoft YaHei UI
+start
+    :显示启动页;
+    :读取屏幕的版本;
+    :读取屏幕信号显示状态;
+    :修改屏幕触摸灵敏度;
+    if(屏幕显示启动页)then(true)
+    :切换显示屏为主页;
+    else(flase)
+    endif
+    repeat
+    if(升级标志位) then(true)
+        :删除进程;
+        stop
+        else (false)
+            if(屏幕显示启动页)then(true)
+                :切换显示屏为主页;
+            else(flase)
+            endif
+        :电表数据读取与处理;
+            note left
+            详见 <b>moudel4-1</b>
+            ====
+            * meter_pro()
+            end note
+        :延时关闭背光灯;
+    endif   
+@enduml
+

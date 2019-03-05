@@ -1,0 +1,37 @@
+@startuml
+
+skinparam defaultFontName Microsoft YaHei UI
+
+start
+    note
+    card_data_pro()
+    ====
+    * usart_ic.c
+    end note
+    while(有新数据)is(true)
+        if(是IC卡数据)then(false)
+        else(true)
+            if(一帧数据接收完成)then(false)
+            else(true)
+                if(CRC校验)then(false)
+                    :蜂鸣器响;
+                    else(true)
+                    :调用接收数据相应的处理函数;
+                        note 
+                        new_card_data()
+                        end note
+                    :回传IC卡串口数据;
+                    :清空数据结构体;
+                endif
+                :清空数据结构体;
+            endif   
+        endif  
+        if(协议头内容及位置)then(错误)
+        else(正确)
+            :标记是IC卡数据;
+        endif 
+    
+    endwhile(false)
+stop
+@enduml
+

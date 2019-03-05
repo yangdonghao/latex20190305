@@ -1,0 +1,18 @@
+@startuml
+skinparam defaultFontName Microsoft YaHei UI
+start
+    repeat
+    if(升级标志位) then(true)
+        :删除进程;
+        stop
+        else (false)
+            :定时读取屏幕当前显示页数;
+            :接收读卡器数据;
+            :接收蓝牙数据;
+                note left
+                详见 <b>moudel5-1</b>
+                ====
+                * Receive_Bluetooth()
+                end note
+    endif   
+@enduml

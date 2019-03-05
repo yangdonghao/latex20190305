@@ -1,0 +1,29 @@
+@startuml
+
+skinparam defaultFontName Microsoft YaHei UI
+start
+    note
+    dwin_receive()
+    ====
+    * dwin.c
+    end note
+    while(有新数据)is(true)
+        if(接收数组位置超出范围)then(false)
+        else(true)
+        :数据计数置零;
+        endif
+
+        :数组位置累加;
+
+        if(协议头)then(错误)
+        else(正确)
+            :协议头写入数组头部,数据位置设为2;
+        endif 
+        if(达到接收数据长度)then(false)
+        else(true)
+            :处理接收数据;
+            floating note: dwin_data_pro()
+        endif      
+    endwhile(false)
+stop
+@enduml

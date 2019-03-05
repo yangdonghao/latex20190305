@@ -1,0 +1,137 @@
+\section{总述}
+
+使用流程图概要说明代码执行过程。     
+
+\subsection{主函数}
+\begin{figure}[H]
+  \centering
+  \includegraphics[width=0.9\textwidth,height=0.9\textheight,keepaspectratio]{out/uml/main/main.eps}
+  \caption{主函数}
+  \label{fig:main}
+\end{figure}
+
+\subsection{进程}
+\subsubsection{网络}
+\begin{figure}[H]
+  \centering
+  \includegraphics[width=0.8\textwidth,height=0.8\textheight,keepaspectratio]{out/uml/task1net/task1net.eps}
+  \caption{网络}
+  \label{fig:task1net}
+\end{figure}
+
+\subsubsection{屏幕}
+\begin{figure}[H]
+  \centering
+  \includegraphics[width=0.9\textwidth,height=0.9\textheight,keepaspectratio]{out/uml/task2Dwin/task2Dwin.eps}
+  \caption{屏幕}
+\end{figure}
+
+\subsubsection{传感器检测}
+\begin{figure}[H]
+  \centering
+  \includegraphics[width=0.9\textwidth,height=0.9\textheight,keepaspectratio]{out/uml/task3detection/task3detection.eps}
+  \caption{传感器检测}
+\end{figure}
+
+\subsubsection{电表}
+\begin{figure}[H]
+  \centering
+  \includegraphics[scale=0.6]{out/uml/task4meter/task4meter.eps}
+  \caption{电表}
+\end{figure}
+
+\subsubsection{读卡器}
+\begin{figure}[H]
+  \centering
+  \includegraphics[scale=0.6]{out/uml/task5card/task5card.eps}
+  \caption{读卡器}
+\end{figure}
+
+\subsection{功能模块}
+
+\subsubsection{moudel0-1：重启获取数据}
+\begin{figure}[H]
+  \centering
+  \includegraphics[scale=0.6]{out/uml/moudel0_1/moudel0_1.eps}
+  \caption{moudel0-1：重启获取数据}
+\end{figure}
+
+\subsubsection{moudel1-1：系统升级}
+\begin{figure}[H]
+  \centering
+  \includegraphics[scale=0.6]{out/uml/moudel1_1/moudel1_1.eps}
+  \caption{moudel1-1：系统升级}
+\end{figure}
+
+
+\subsubsection{moudel2-1：接收屏幕数据并处理}
+\begin{figure}[H]
+  \centering
+  \includegraphics[scale=0.6]{out/uml/moudel2_1/moudel2_1.eps}
+  \caption{moudel2-1：接收屏幕数据并处理}
+\end{figure}
+
+\subsubsection{moudel2-2：接收并处理读卡器数据}
+\begin{figure}[H]
+  \centering
+  \includegraphics[scale=0.6]{out/uml/moudel2_2/moudel2_2.eps}
+  \caption{moudel2-2：接收并处理读卡器数据}
+\end{figure}
+
+\subsubsection{moudel2-3：接收智能电表数据（645）}
+\begin{figure}[H]
+  \centering
+  \includegraphics[scale=0.6]{out/uml/moudel2_3/moudel2_3.eps}
+  \caption{moudel2-3：接收智能电表数据（645）}
+\end{figure}
+
+\subsubsection{moudel2-4：接收并处理服务器数据}
+\begin{figure}[H]
+  \centering
+  \includegraphics[width=0.9\textwidth,height=0.9\textheight,keepaspectratio]{out/uml/moudel2_4/moudel2_4.eps}
+  \caption{moudel2-4：接收并处理服务器数据}
+\end{figure}
+
+\subsubsection{moudel3-1：虚拟时钟}
+\begin{figure}[H]
+  \centering
+  \includegraphics[scale=0.6]{out/uml/moudel3_1/moudel3_1.eps}
+  \caption{moudel3-1：虚拟时钟}
+\end{figure}
+
+\subsubsection{moudel3-2：充电枪状态检测}
+充电枪工作状态与切换方式请查看\href{http://www.95598.cn/download/18487.1-2015.pdf}{国标文档}。
+
+\begin{figure}[H]
+  \centering
+  \includegraphics[scale=0.6]{out/uml/moudel3_2/moudel3_2.eps}
+  \caption{moudel3-2：充电枪状态检测}
+\end{figure}
+
+\subsubsection{moudel3-3：读取枪座温度}
+\begin{figure}[H]
+  \centering
+  \includegraphics[scale=0.6]{out/uml/moudel3_3/moudel3_3.eps}
+  \caption{moudel3-3：读取枪座温度}
+\end{figure}
+
+\subsubsection{moudel3-4：一键启停（锁）操作}
+\begin{figure}[H]
+  \centering
+  \includegraphics[width=0.9\textwidth,height=0.9\textheight,keepaspectratio]{out/uml/moudel3_4/moudel3_4.eps}
+  \caption{moudel3-4：一键启停（锁）操作}
+\end{figure}
+
+\subsubsection{moudel4-1：电表数据处理}
+\begin{figure}[H]
+  \centering
+  \includegraphics[scale=0.6]{out/uml/moudel4_1/moudel4_1.eps}
+  \caption{moudel4-1：电表数据处理}
+\end{figure}
+
+\subsubsection{moudel5-1：接收蓝牙数据}
+\begin{figure}[H]
+  \centering
+  \includegraphics[scale=0.6]{out/uml/moudel5_1/moudel5_1.eps}
+  \caption{moudel5-1：接收蓝牙数据}
+\end{figure}

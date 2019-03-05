@@ -1,0 +1,84 @@
+@startuml
+skinparam defaultFontName Microsoft YaHei UI
+start
+    repeat
+    if(升级标志位) then(true)
+        :删除进程;
+        stop
+        else (false)
+        :虚拟时钟;
+            note right
+            详见 <b>moudel3-1</b>
+            ====
+            * virtual_clock()
+            end note
+        :检测枪的CP状态;
+            note right
+            详见 <b>moudel3-2</b>
+            ====
+            * CP_detection()
+            end note
+        :获取主板温度;
+        if(主板温度大于65度)then(true)
+            if(主板状态数据正常)then(true)
+                :状态数据更新为主板异常;
+                :切换显示屏为主板异常界面;
+                else(false)
+            endif
+        else(false)
+            if(主板状态数据异常)then(true)
+                :状态数据更新为主板正常;
+                :切换显示屏回主页;
+                else(false)
+            endif
+        endif
+        :获取枪座的温度;
+            note left
+            详见 <b>moudel3-3</b>
+            ====
+            * get_temp()
+            end note
+
+        if(急停按钮)then(按下)
+            if(急停状态数据正常)then(true)
+                if(枪状态数据是开启)then(true)
+                    :关闭充电枪;
+                    :更新枪的状态数据;
+                else(flase)
+                    :切换显示屏为急停界面;
+                    :状态数据更新为急停异常;
+                endif
+            else(false)
+            endif
+        else(正常)
+            if(急停状态数据异常)then(true)
+                :清除急停异常状态数据;
+                :切换显示屏为主页;
+            else(false)
+            endif
+        endif
+        if(桩数据箱门状态异常)then(true)
+            if(箱门被打开)then(true)
+                if(箱门标志位)then(false)
+                    :更新枪的状态数据;
+                    :切换显示屏为门开界面;
+                else(ture)
+                endif
+            else(false)
+                if(箱门标志位)then(true)
+                    :更新枪的状态数据;
+                    :切换显示屏为主页;
+                else(false)
+                endif
+            endif
+        endif
+    
+    :一键开启（锁）检测处理;
+        note left
+        详见 <b>moudel3-4</b>
+        ====
+        * charge_button()
+        end note
+    :检测浪涌;
+    endif   
+@enduml

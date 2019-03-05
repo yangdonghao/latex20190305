@@ -1,0 +1,28 @@
+@startuml
+skinparam defaultFontName Microsoft YaHei UI
+start
+    note
+    virtual_clock()
+    ====
+    * pile_API.c
+    end note
+    if(更新费率时间到)then(false)
+    else(true)
+        if(当前时间在存储的时间段内)then(true)
+        :设置费率为所在时间段内的费率值;
+        else(false)
+        :设置费率为默认费率值;
+        endif
+        :更新屏幕费率值;
+    endif
+
+    if(桩的时间已更新)then(false)
+    else(true)
+        if(未更新时间大于1s)then(true)
+        :更新时间数据;
+        elseif(计时器溢出)
+        :标记桩的时间未更新;
+        endif
+    endif
+stop
+@enduml

@@ -1,0 +1,37 @@
+@startuml
+skinparam defaultFontName Microsoft YaHei UI
+start
+
+    note
+    get_temp()
+    ====
+    * AD.c
+    end note
+    if(枪座相数)then(单相)
+        :读取单相温度;
+    else(三相)
+        :读取三相温度;
+    endif
+
+    if(温度异常)then(false)
+        if(数据标记为温度异常)then(false)
+        else(true)
+            :清除温度异常报警;
+        endif
+        if(小于恢复温度)then(true)
+            if(数据标记为温度异常)then(true)
+            else(true)
+                :恢复枪充电;
+                :上报告警信息;
+            endif
+        elseif(大于警告温度)then(true)
+            :降低充电功率;
+            :上报告警信息;
+        endif
+    else(true)
+        :关闭充电;
+        :上报异常;
+    endif
+
+stop
+@enduml

@@ -1,0 +1,11 @@
+@startuml
+skinparam defaultFontName Microsoft YaHei UI
+start
+    note
+    CP_detection()
+    ====
+    * detection_api.c
+    end note
+stop
+@enduml
+

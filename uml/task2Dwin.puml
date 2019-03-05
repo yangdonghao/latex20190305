@@ -1,0 +1,61 @@
+@startuml
+skinparam defaultFontName Microsoft YaHei UI
+
+start
+    :关闭充电输出;
+    :电磁锁解锁;
+    if(蓝牙使能标记) then (true)
+        :使能蓝牙;
+        else (false)
+        :禁用蓝牙;
+    endif
+    if(重置信号) then(true)
+        :清除IC卡信息;
+        :蓝牙恢复出厂密码;
+        else(false)
+    endif
+    repeat
+    if(升级标志位) then(true)
+        :升级BootLoader;
+            note right
+            详见 <b>moudel1-1</b>
+            ====
+            * upgrade_bootloader()
+            end note
+        :删除进程;
+        stop
+        else (false)
+            if(网络类型为非离线且处于离线状态) then (true)
+                :更新屏幕网络状态显示;
+                :LED显示为离线定义状态;
+                :重启网络模块;
+                if(选择网络类型) then (3G GSM)
+                    :设置网络模块重启超时时间;
+                    else (wifi)
+                        if(注册网络)then(成功)
+                            :更新屏幕显示;
+                            else(失败)
+                        endif
+                endif
+            else(false)
+            endif
+            if(网络为在线状态)then(true)
+                if(上报订单信息)then(false)
+                    :上报订单信息;
+                    else(true)
+                    :上传枪的状态和心跳;
+                    endif
+                if(心跳时间到)then(true)
+                :更新枪数据;
+                else(false)
+                endif
+            else(false)    
+            endif
+
+            if(网络为离线类型)then(true)
+                if(更新订单时间到)then(true)
+                    :读取屏幕RTC时间;
+                else(false)
+            endif    
+    endif   
+@enduml

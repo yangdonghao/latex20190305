@@ -1,0 +1,30 @@
+@startuml
+
+skinparam defaultFontName Microsoft YaHei UI
+start
+    note
+    upgrade_bootloader()
+    ====
+    * protocol.c
+    end note
+    if(升级标志)then(false)
+    else(true)
+        :禁用串口2、3、4、5、6中断;
+        :屏幕切换至启动页;
+        :将接收数据存入外部存储;
+        note
+        upgrade()
+        ====
+        * bootloader.c
+        end note
+        :将外部系统更新数据存到内部存储;
+        note
+        copyfromEFlash()
+        ====
+        * bootloader.c
+        end note
+        :清除升级信息结构体数据;
+    endif
+    :重启系统;
+stop
+@enduml

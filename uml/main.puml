@@ -1,0 +1,31 @@
+@startuml
+skinparam defaultFontName Microsoft YaHei UI
+
+start
+  :设置向量表的位置和偏移量;
+  :板级驱动初始化;
+  :默认数据初始化;
+  :获取外部存储数据;
+    note right
+    详见 <b>module0-1</b>
+    ====
+    * reboot_process()
+    end note
+  :创建启动进程;
+  fork
+    :进程1：网络;
+  fork again
+    :进程2：显示屏;
+      fork again
+    :进程3：监测传感器;
+      fork again
+    :进程4：电表;
+      fork again
+    :进程5：读卡器;
+      fork again
+    :进程6：服务器;
+      fork again
+    :进程7：led;
+  end fork
+
+@enduml
